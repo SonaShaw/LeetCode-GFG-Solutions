@@ -1,0 +1,16 @@
+
+
+Problem Link: https://leetcode.com/problems/running-sum-of-1d-array/
+
+class Solution {
+    public int[] runningSum(int[] a) {
+        int n = a.length;
+        int prefix[] = new int[n];
+        prefix[0] = a[0];
+        for(int i=1; i<n; i++){
+            prefix[i] = a[i]+prefix[i-1];
+        }
+        return prefix;
+        
+    }
+}
