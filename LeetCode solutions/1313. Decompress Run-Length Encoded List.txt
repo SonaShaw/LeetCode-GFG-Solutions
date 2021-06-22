@@ -1,0 +1,79 @@
+
+
+Problem Link: https://leetcode.com/problems/decompress-run-length-encoded-list/
+
+
+
+class Solution {
+    public int[] decompressRLElist(int[] arr) {
+        /*
+        List<Integer> res = new ArrayList<>();
+        int n = nums.length;
+        
+        int sizeOfArray = 0;
+        for(int i=0; i<n; i=i+2){
+            sizeOfArray += nums[i];
+        }
+        
+    
+        
+        for(int i=0; i<n; i=i+2){
+            int freq = nums[i];
+            int value = nums[i+1];
+            while(freq-- > 0){
+                res.add(value);
+            }
+        }
+        int k=0;
+        int a[] = new int[res.size()];
+        for(int x:res){
+            a[k++] = x;
+        }
+        //a = res.toArray(a);
+        return a;
+        */
+        
+        /*
+        int n = nums.length;
+        
+        int sizeOfArray = 0;
+        for(int i=0; i<n; i=i+2){
+            sizeOfArray += nums[i];
+        }
+        int k=0;
+        int res[] = new int[sizeOfArray];
+        for(int i=0; i<n; i=i+2){
+            int freq = nums[i];
+            int value = nums[i+1];
+            while(freq-- > 0){
+                res[k++] = value;
+            }
+            
+        }
+        return res;
+        
+        */
+        
+        int len = 0;
+        for (int i = 0; i < arr.length; i = i + 2) {
+            len = len + arr[i];
+        }
+
+        int[] decArray = new int[len];
+        int kIndex = 0;
+        for (int i = 0; i < arr.length; i = i + 2) {
+            kIndex = populateArray(decArray, kIndex, arr[i+1], arr[i]);
+        }
+        
+        return decArray;
+    }
+    
+    public static int populateArray(int[] arr, int index, int value, int numberOfTimes) {
+        while (numberOfTimes > 0) {
+            arr[index++] = value;
+            numberOfTimes --;
+        }
+        return index;
+    }
+    
+}
