@@ -1,0 +1,51 @@
+
+
+Problem Link: https://leetcode.com/problems/how-many-numbers-are-smaller-than-the-current-number/submissions/
+
+
+class Solution {
+    public int[] smallerNumbersThanCurrent(int[] a) {
+        
+        ////// ===============O(n^2)========================
+        /*
+        int res[] = new int[a.length];
+        int n = a.length;
+        for(int i=0; i<n; i++){
+            int num = 0;
+            for(int j=0; j<n; j++){
+                if(a[j]<a[i]&& j!=i){
+                   num++; 
+                }
+            }
+            res[i] = num;
+        }
+        return res;
+        */
+        
+        
+        
+        //=================O(n)====================
+        
+        
+        // make a frequency array to store frequency of each element 
+        int freq[] = new int[101];
+        freq[0] = 0;
+        for(int x:a){
+            freq[x]++;
+        }
+        
+        // make a prefix array to store number lass than a aspecific index=======
+        int pre[] = new int[101];
+        pre[0] = 0;
+        for(int i=1; i<101; i++){
+            pre[i] = pre[i-1]+freq[i-1];
+        }
+        
+        //========construct the result array==============
+        int res[] = new int[a.length];
+        for(int i=0; i<res.length; i++){
+            res[i] = pre[a[i]];
+        }
+        return res;
+    }
+}
