@@ -1,0 +1,31 @@
+
+
+Problm Link: https://leetcode.com/problems/number-of-good-pairs/
+
+
+class Solution {
+    
+    public int numIdenticalPairs(int[] a) {
+        int n = a.length;
+        int freq[] = new int[101];
+        freq[0] = 0;
+       
+        for(int x:a){
+            freq[x]++;
+        }
+        int res=0;
+        for(int x:freq){
+            if(x>=2){
+                res = res+nc2(x);
+            }
+        }
+        return res;
+        
+        
+        
+    }
+    
+    private static int nc2(int n){
+        return n*(n-1)/2;
+    }
+}
