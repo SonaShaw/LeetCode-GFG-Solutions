@@ -1,0 +1,29 @@
+
+
+Problem Link: https://leetcode.com/problems/create-target-array-in-the-given-order/
+
+
+class Solution {
+    public int[] createTargetArray(int[] nums, int[] index) {
+        int n = nums.length;
+        int target[] = new int[n];
+        for(int i=0; i<n; i++){
+            target[i] = -1;
+        }
+        for(int i=0; i<n; i++){
+            int el = nums[i];
+            int in = index[i];
+            if(target[in]!=-1){
+                //shift elements to right side
+                for(int j=i; j>in; j--){
+                    target[j]= target[j-1];
+                }
+                target[in] = el;
+            }else{
+                target[in] = el;
+            }
+            
+        }
+        return target;
+    }
+}
